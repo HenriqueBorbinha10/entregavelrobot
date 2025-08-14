@@ -8,12 +8,6 @@
   <style>
     body { background: #000; color: #fff; font-family: Arial, sans-serif; }
     .bg-pink-custom { background: #f43f5e; }
-    .btn-bar { display: flex; flex-direction: row; gap: 0.5rem; width: 100%; justify-content: center; }
-    .btn-bar > button { flex: 1 1 0; font-size: 1rem; padding-left: 0.5rem; padding-right: 0.5rem; white-space: nowrap; }
-    @media (max-width: 540px) {
-      .btn-bar { flex-direction: column !important; gap: 0.5rem !important; }
-      .btn-bar > button { width: 100%; }
-    }
     .option-btn {
       padding: 0.32rem 0.5rem !important;
       font-size: 0.91rem !important;
@@ -27,6 +21,63 @@
     .count-btn.selected {
       background: #2bfcf8 !important;
       color: #18181b !important;
+    }
+    .caixa-saldo {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      background: #232326;
+      border-radius: 0.75rem;
+      padding: 0.9rem 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-sizing: border-box;
+      max-width: 100vw;
+      gap: 1.5rem;
+    }
+    .saldo-texto {
+      font-size: 0.75rem;
+      font-weight: 500;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      flex:1 1 0;
+    }
+    .balance-box-small {
+      background: #f43f5e;
+      color: #fff;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.45rem 0.3rem;
+      min-width: 100px;
+      text-align: center;
+      letter-spacing: 0.8px;
+      box-shadow: 0 2px 8px 0 #f43f5e22;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 540px) {
+      .caixa-saldo {
+        padding: 0.75rem 0.2rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+        gap: 0.6rem;
+      }
+      .saldo-texto {
+        font-size: 0.88rem;
+      }
+      .balance-box-small {
+        font-size: 0.8rem;
+        min-width: 100px;
+        padding: 0.32rem 0.5rem;
+      }
     }
     .video-label-pink {
       background: #f43f5e;
@@ -69,33 +120,36 @@
       padding-right: 0.3rem !important;
       letter-spacing: -0.5px;
     }
+    .btn-bar { display: flex; flex-direction: row; gap: 0.5rem; width: 100%; justify-content: center; }
+    .btn-bar > button { flex: 1 1 0; font-size: 1rem; padding-left: 0.5rem; padding-right: 0.5rem; white-space: nowrap; }
+    @media (max-width: 540px) {
+      .btn-bar { flex-direction: column !important; gap: 0.5rem !important; }
+      .btn-bar > button { width: 100%; }
+    }
   </style>
 </head>
 <body class="bg-black text-white min-h-screen">
 
 <!-- ETAPA 01 -->
-<div id="etapa01" class="flex items-center justify-center min-h-screen px-2 sm:px-6">
-  <div class="w-full max-w-md sm:max-w-lg px-2 sm:px-4 space-y-0">
-    <div style="margin-top: 10px;">
-      <div class="flex justify-center">
-        <img src="imagens/logo.png" alt="Logo" class="w-42" />
-      </div>
+<div id="etapa01" class="min-h-screen w-full flex items-center justify-center px-2 sm:px-6 bg-black">
+  <div class="w-full max-w-md sm:max-w-lg flex flex-col items-center justify-center px-2 sm:px-4 py-6 space-y-4 bg-black rounded-xl shadow-lg">
+    <div class="caixa-saldo" id="caixaSaldo01">
+      <span class="saldo-texto">
+        Congratulations, you have achieved your first earnings.
+      </span>
+      <span id="balance01" class="balance-box-small">BALANCE: U$ 10.75</span>
     </div>
-    <div style="margin-bottom: 10px;"></div>
-    <div style="margin-top: 0px;"></div>
-    <h2 class="text-center text-2xl font-semibold">🎥 VIDEO PANEL</h2>
-    <div style="margin-bottom: 18px;"></div>
-    <div style="margin-top: 0px;"></div>
-    <div class="bg-[#121212] rounded-xl p-4 space-y-2">
+    <img src="imagens/logo.png" alt="Logo"
+         class="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto block"
+         style="margin-top: 0.2px; margin-bottom: 0.2px;" />
+    <h2 class="text-center text-2xl font-semibold mt-2 w-full">🎥 VIDEO PANEL</h2>
+    <div class="bg-[#18181b] rounded-xl p-4 space-y-2 mt-4 w-full">
       <div id="toggle-handle" class="flex justify-between items-center cursor-pointer">
         <label class="font-bold text-lg">Enter your TikTok</label><span>﹀</span>
       </div>
       <input id="handle" type="text" placeholder="@your_tiktok_handle" class="w-full bg-[#1f1f1f] p-3 rounded-md focus:outline-none hidden" />
     </div>
-    <div style="margin-bottom: 17px;"></div>
-    <div style="margin-top: 0px;"></div>
-    <!-- 2 column grid, "Comment Replies" in col 1, menor texto -->
-    <div class="bg-[#121212] rounded-xl p-4 space-y-4">
+    <div class="bg-[#18181b] rounded-xl p-4 space-y-4 mt-4 w-full">
       <div id="toggle-types" class="flex justify-between items-center cursor-pointer">
         <label class="font-bold text-lg">Select video type</label><span>﹀</span>
       </div>
@@ -112,9 +166,7 @@
         <p id="video-count" class="text-gray-400 text-sm hidden">Selected: 0</p>
       </div>
     </div>
-    <div style="margin-bottom: 17px;"></div>
-    <div style="margin-top: 0px;"></div>
-    <div class="bg-[#121212] rounded-xl p-4 space-y-4">
+    <div class="bg-[#18181b] rounded-xl p-4 space-y-4 mt-4 w-full">
       <div id="toggle-count" class="flex justify-between items-center cursor-pointer">
         <label class="font-bold text-lg">How many videos to post per day</label><span>﹀</span>
       </div>
@@ -134,21 +186,22 @@
         <p id="count-result" class="text-gray-400 text-sm hidden">Selected: 0</p>
       </div>
     </div>
-    <div style="margin-bottom: 17px;"></div>
-    <div style="margin-top: 10px;"></div>
-    <button id="continue" disabled class="w-full py-3 bg-gray-800 text-gray-400 font-bold rounded-xl">CONTINUE</button>
-    <div style="margin-bottom: 18px;"></div>
-    <div style="margin-top: 0px;"></div>
-    <p id="info" class="text-center text-sm text-gray-400">
+    <button id="continue" disabled class="w-full py-3 bg-gray-800 text-gray-400 font-bold rounded-xl mt-6">CONTINUE</button>
+    <p id="info" class="text-center text-sm text-gray-400 mt-2 mb-2">
       Please fill out your TikTok profile, select at least one video type, and choose videos per day to continue.
     </p>
-    <div style="margin-bottom: 0px;"></div>
   </div>
 </div>
 
 <!-- ETAPA 02 -->
-<div id="etapa02" class="hidden min-h-screen flex flex-col items-center justify-center px-2 sm:px-6">
-  <div class="w-full max-w-md sm:max-w-lg py-8 mx-auto text-center">
+<div id="etapa02" class="hidden min-h-screen w-full flex items-center justify-center px-2 sm:px-6 bg-black">
+  <div class="w-full max-w-md sm:max-w-lg px-2 py-8 flex flex-col items-center justify-center text-center bg-black rounded-xl shadow-lg">
+    <div class="caixa-saldo" id="caixaSaldo02">
+      <span class="saldo-texto text-left">
+        We've already identified your TikTok for payments.
+      </span>
+      <span id="balance02" class="balance-box-small">BALANCE: U$ 22.88</span>
+    </div>
     <h2 class="text-2xl font-semibold mb-5">🌀 Sending videos...</h2>
     <video src="imagens/vdeottkpulse.mp4" autoplay muted loop playsinline class="mx-auto mb-4 w-64 sm:w-96 rounded-lg"></video>
     <p id="phrase-wait" class="mb-3">⏳ Wait, generating videos...</p>
@@ -167,28 +220,28 @@
 
 <!-- ETAPA 03 -->
 <div id="etapa03" class="hidden min-h-screen flex flex-col items-center justify-start py-10 px-2 bg-black text-white">
-  <main class="w-full max-w-2xl mx-auto flex flex-col items-center">
-
-    <div style="margin-top: 1px;"></div>
+ <main class="w-full max-w-2xl mx-auto flex flex-col items-center">
+    <div class="caixa-saldo" id="caixaSaldo03">
+      <span class="saldo-texto">
+        Post the videos for your payments to be sent.
+      </span>
+      <span id="balance03" class="balance-box-small">BALANCE: U$ 31.45</span>
+    </div>
     <h1 class="text-3xl sm:text-4xl font-bold mb-0 text-center">GENERATED VIDEOS</h1>
-    <div style="margin-bottom: 20px;"></div>
-    <div style="margin-top: 0px;"></div>
-    <p id="subtitle" class="text-gray-300 text-base sm:text-lg mb-0 text-center">
+    <p id="subtitle" class="text-gray-300 text-base sm:text-lg mb-0 text-center mt-3">
       Based on selected video types: <span id="selectedTypeText" class="font-semibold">Curiosities</span>
     </p>
-    <div style="margin-bottom: 25px;"></div>
-    <div id="videos-container" class="w-full flex flex-col gap-4 mb-8"></div>
-    <div style="margin-top: 18px;"></div>
-    <div class="btn-bar">
+    <div id="videos-container" class="w-full flex flex-col gap-4 mb-8 mt-6"></div>
+    <div class="btn-bar mt-4">
       <button class="border border-cyan-400 hover:bg-cyan-900 hover:bg-opacity-30 text-cyan-300 font-semibold py-3 px-2 rounded-md transition duration-200 only-one-line"
-        onclick="location.reload()">
+        onclick="generateMoreVideos()">
         <svg class="w-4 h-4 mr-1 inline-block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A9 9 0 106.62 6.623"/>
         </svg>
         Generate more videos
       </button>
       <button class="bg-pink-custom hover:bg-pink-600 text-white font-semibold py-3 px-2 rounded-md transition duration-200 only-one-line"
-        onclick="window.open('https://www.appgelatina.online/quizrobot','_blank')">
+        onclick="window.open('https://www.rendahbx.online/tiktokrobot','_blank')">
         Publish videos
       </button>
       <button class="bg-[#222] hover:bg-[#333] text-white font-semibold py-3 px-2 rounded-md transition duration-200 only-one-line"
@@ -196,7 +249,6 @@
         Back to configuration
       </button>
     </div>
-    <div style="margin-bottom: 0px;"></div>
   </main>
 </div>
 
@@ -257,8 +309,8 @@
     continueBtn.disabled = !filled;
     infoText.classList.toggle("hidden", filled);
     continueBtn.className = filled
-      ? "w-full py-3 bg-pink-custom text-white font-bold rounded-xl"
-      : "w-full py-3 bg-gray-800 text-gray-400 font-bold rounded-xl";
+      ? "w-full py-3 bg-pink-custom text-white font-bold rounded-xl mt-6"
+      : "w-full py-3 bg-gray-800 text-gray-400 font-bold rounded-xl mt-6";
   }
 
   continueBtn.addEventListener("click", () => {
@@ -269,9 +321,46 @@
     mostrarEtapa02();
   });
 
+  // SALDO DINÂMICO (em todas etapas)
+  let balance1 = 10.75;
+  let balance2 = 22.88;
+  let balance3 = 31.45;
+  let interval1, interval2, interval3;
+  let stepTime = 5500;
+
+  function startBalance01() {
+    clearInterval(interval1);
+    document.getElementById('balance01').textContent = `BALANCE: U$ ${balance1.toFixed(2)}`;
+    interval1 = setInterval(() => {
+      balance1 *= 1.03;
+      document.getElementById('balance01').textContent = `BALANCE: U$ ${balance1.toFixed(2)}`;
+    }, stepTime);
+  }
+  function startBalance02() {
+    clearInterval(interval2);
+    document.getElementById('balance02').textContent = `BALANCE: U$ ${balance2.toFixed(2)}`;
+    interval2 = setInterval(() => {
+      balance2 *= 1.03;
+      document.getElementById('balance02').textContent = `BALANCE: U$ ${balance2.toFixed(2)}`;
+    }, stepTime);
+  }
+  function startBalance03() {
+    clearInterval(interval3);
+    document.getElementById('balance03').textContent = `BALANCE: U$ ${balance3.toFixed(2)}`;
+    interval3 = setInterval(() => {
+      balance3 *= 1.03;
+      document.getElementById('balance03').textContent = `BALANCE: U$ ${balance3.toFixed(2)}`;
+    }, stepTime);
+  }
+  // Chama o saldo nas etapas corretas
+  window.addEventListener("DOMContentLoaded", () => {
+    startBalance01();
+  });
+
   // ETAPA 2
   function mostrarEtapa02() {
     document.getElementById("etapa02").classList.remove("hidden");
+    startBalance02();
     let width = 0;
     const progress = document.getElementById("progress");
     const percent = document.getElementById("percentage");
@@ -292,9 +381,9 @@
         percent.textContent = width + "%";
       }
     }, 75);
-    setTimeout(() => mostrarFrase("phrase1"), 1000);
-    setTimeout(() => mostrarFrase("phrase2"), 2000);
-    setTimeout(() => mostrarFrase("phrase3"), 3000);
+    setTimeout(() => mostrarFrase("phrase1"), 2000);
+    setTimeout(() => mostrarFrase("phrase2"), 4000);
+    setTimeout(() => mostrarFrase("phrase3"), 6000);
   }
   function mostrarFrase(id) {
     const el = document.getElementById(id);
@@ -306,6 +395,7 @@
   function mostrarEtapa03() {
     document.getElementById("etapa02").classList.add("hidden");
     document.getElementById("etapa03").classList.remove("hidden");
+    startBalance03();
     carregarVideos();
   }
 
@@ -332,6 +422,44 @@
   function voltarParaEtapa01() {
     document.getElementById("etapa03").classList.add("hidden");
     document.getElementById("etapa01").classList.remove("hidden");
+    startBalance01();
+  }
+
+  // Função para gerar mais vídeos (voltar ao início totalmente limpo)
+  function generateMoreVideos() {
+    // Limpa os dados salvos
+    localStorage.removeItem("videoTypes");
+    localStorage.removeItem("videosPerDay");
+    localStorage.removeItem("tiktokHandle");
+
+    // Volta para etapa 1
+    document.getElementById("etapa03").classList.add("hidden");
+    document.getElementById("etapa01").classList.remove("hidden");
+    startBalance01();
+
+    // Limpa seleção dos botões
+    document.querySelectorAll(".video-type").forEach(btn => btn.classList.remove("selected"));
+    document.querySelectorAll(".video-count").forEach(btn => btn.classList.remove("selected"));
+
+    // Limpa o input do handle e recolhe o campo
+    const handleInput = document.getElementById("handle");
+    handleInput.value = "";
+    handleInput.classList.add("hidden");
+
+    // Recolhe os campos de tipos e quantidade
+    document.getElementById("types-wrapper").classList.add("hidden");
+    document.getElementById("video-count").classList.add("hidden");
+    document.getElementById("count-wrapper").classList.add("hidden");
+    document.getElementById("count-result").classList.add("hidden");
+
+    // Zera contadores
+    selectedTypes = new Set();
+    selectedCount = null;
+    document.getElementById("video-count").textContent = "Selected: 0";
+    document.getElementById("count-result").textContent = "Selected: 0";
+
+    // Desabilita botão e mostra info
+    validate();
   }
 </script>
 </body>
